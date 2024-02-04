@@ -13,7 +13,7 @@ const secondsEl = document.querySelector('.value[data-seconds]');
 
 let userSelectedDate;
 let timerInterval;
-
+startBtn.disabled = true;
 const options = {
   enableTime: true,
   time_24hr: true,
@@ -24,20 +24,13 @@ const options = {
     // Отримуємо поточну дату
     const currentDate = new Date();
     if (userSelectedDate.getTime() <= currentDate.getTime()) {
-      startBtn.disabled = true;
       iziToast.error({
         title: 'Error',
         message: 'Please choose a date in the future!',
         position: 'topRight',
       });
-    } else {
-      startBtn.disabled = false;
-      iziToast.success({
-        title: 'OK!',
-        message: 'You can press Start!',
-        position: 'topRight',
-      });
     }
+    startBtn.disabled = false;
   },
 };
 flatpickr(datetimePicker, options);
